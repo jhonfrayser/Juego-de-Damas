@@ -1,12 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package juegodedamas;
 
 /**
  *
- * @author hp
+ * @author JhonFrayser
  */
 public class Damas extends javax.swing.JFrame {
 

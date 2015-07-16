@@ -17,9 +17,6 @@
                 <Property name="actionCommand" type="java.lang.String" value="Iniciar Nueva Partida"/>
                 <Property name="label" type="java.lang.String" value="Iniciar Nueva Partida"/>
               </Properties>
-              <AccessibilityProperties>
-                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Iniciar Nueva Partida"/>
-              </AccessibilityProperties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MenuItemOpciones">
               <Properties>
