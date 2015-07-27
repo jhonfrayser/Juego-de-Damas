@@ -15,18 +15,59 @@ public class TableroDeDama extends Canvas {
     }
     
 //  Usar Objetos y Crear Procedimientos y Funciones
-    public void actualizar(Graphics g) {
+    public void update(Graphics g) {
         paint(g);
     }
-    ////////////
     
-    //////////
-        //Dibuja y Pinta el Tablero---------------------
-    private void drawTile(int fila, int columna, Graphics g) {
+    
+    ////////////
+     public void paint(Graphics g) {
         
-        if ((fila + 1) % 2 == 0) {
+        if (vecPaintInstructions.size() == 0) {
             
-            if ((columna + 1) % 2 == 0) {
+            g.setColor(new Color(75,141,221)); //Estable los colores al tablero
+            g.fillRect(0,0,500,50);//Borde norte
+            g.fillRect(0,0,50,500);//Oeste
+            g.fillRect(0,450,500,50);//Sur
+            g.fillRect(450,0,50,500);//este
+            
+            currentInstruction = new objPaintInstruction(0,0,8);
+            vecPaintInstructions.addElement(currentInstruction);
+            
+        }
+        
+        g.setColor(new Color(75,141,221));
+        g.fillRect(50,450,450,50);
+        
+        for (int i = 0; i < vecPaintInstructions.size(); i++) {
+            
+            currentInstruction = (objPaintInstruction)vecPaintInstructions.elementAt(i);
+            int startRow = currentInstruction.getStartRow();
+            int startColumn = currentInstruction.getStartColumn();
+            int rowCells = currentInstruction.getRowCells();
+            int columnCells = currentInstruction.getColumnCells();
+            
+            for (int row = startRow; row < (startRow + rowCells); row++) {
+                
+                for (int column = startColumn; column < (startColumn + columnCells); column++) {
+                    drawTile(row, column, g);
+                }
+                
+            }
+            
+        }
+        
+        drawExtra(g);
+        
+    }
+    //////////
+     
+        //Dibuja y Pinta el Tablero---------------------
+    private void drawTile(int row, int column, Graphics g) {
+        
+        if ((row + 1) % 2 == 0) {
+            
+            if ((column + 1) % 2 == 0) {
                 g.setColor(new Color(255,255,255));
             } else {
                 g.setColor(new Color(0,0,0));
@@ -34,7 +75,7 @@ public class TableroDeDama extends Canvas {
             
         } else {
             
-            if ((columna + 1) % 2 == 0) {
+            if ((column + 1) % 2 == 0) {
                 g.setColor(new Color(0,0,0));
             } else {
                 g.setColor(new Color(255,255,255));
@@ -42,7 +83,7 @@ public class TableroDeDama extends Canvas {
             
         }
         
-        g.fillRect((50 + (columna * 50)), (50 + (fila * 50)), 50, 50);
+        g.fillRect((50 + (column * 50)), (50 + (row * 50)), 50, 50);
         
     }
     
