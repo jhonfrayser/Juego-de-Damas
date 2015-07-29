@@ -1,13 +1,14 @@
 package juegodedamas;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
-
+import java.awt.event.*;
+import javax.swing.JOptionPane;
+import javax.swing.JDialog;
 /**
  *
  * @author JhonFrayser
  */
-public class VentanaTablero extends  TableroDeDama  {
+public class VentanaTablero extends  TableroDeDama implements MouseListener, MouseMotionListener {
    
        private final int refreshRate = 5;
     
@@ -22,7 +23,8 @@ public class VentanaTablero extends  TableroDeDama  {
  
     
     public VentanaTablero() {
-               
+        this.addMouseListener(this);
+        this.addMouseMotionListener(this);     
     }
     
     //Siver para cambiar los mensajes que vez en el tablero
@@ -119,13 +121,24 @@ public class VentanaTablero extends  TableroDeDama  {
         
     }
     
-    //
-    
-    //
+    ////////////
+      private void checkMove(int desRow, int desColumn) {
+        
+        boolean legalMove = false;
+        
+        if (cellMatrix.getPlayerCell(desRow,desColumn) == currentPlayer) {
+            strStatusMsg = "No puedes mover";
+        } //////
+            
+        }
+        
+        
+ 
+    /////////
     
    
     
-    private void unsucessfullDrag(int desRow, int desColumn) {
+    private void unsucessfullDrag() {
         
         cellMatrix.setPieceCell(startRow, startColumn, pieceBeingDragged);
         cellMatrix.setPlayerCell(startRow, startColumn, currentPlayer);
@@ -152,8 +165,10 @@ public class VentanaTablero extends  TableroDeDama  {
     
     public void mouseEntered(MouseEvent e) {
     }
-    
-   //   //
+     public void mouseExited(MouseEvent e) {
+        mouseReleased(e);
+    }
+   
     
     public void mousePressed(MouseEvent e) {
         
@@ -183,9 +198,31 @@ public class VentanaTablero extends  TableroDeDama  {
         }
         
     }
-    //   //
+    //
+    public void mouseReleased(MouseEvent e) {
+        
+        if (isDragging) {
+            
+            isDragging = false;
+            
+            int desRow = findWhichTileSelected(currentY);
+            int desColumn = findWhichTileSelected(currentX);
+            checkMove(desRow, desColumn);
+            repaint();
+            
+        }
+        
+    }
+      //
    
     
+     /*
+     * 	El mouseDragged () la función se llama una vez cada vez que se mueve 
+     * el ratón mientras se pulsa un botón del ratón. (Si un botón no está 
+     * siendo presionado, mouseMoved () se llama en su lugar.) Mouse y eventos
+     * de teclado sólo funcionan cuando un programa tiene draw()(dibujar) . 
+     * Sin draw () , el código sólo se ejecuta una vez y luego se detiene la escucha de eventos. 
+     */
     public void mouseDragged(MouseEvent e) {
         
         if (isDragging) {
