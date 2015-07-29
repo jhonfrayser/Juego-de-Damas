@@ -39,7 +39,7 @@ public class DamaGUI implements ActionListener, KeyListener, WindowFocusListener
         cmdNewGame.addActionListener(this);
         cmdSetNames.addActionListener(this);
         
-        txtPlayerOne = new JTextField("Henry Wong", 10);
+        txtPlayerOne = new JTextField("GuizadoGonzales", 10);
         txtPlayerTwo = new JTextField("Oponente",10);
         
         txtPlayerOne.addKeyListener(this);
@@ -50,16 +50,16 @@ public class DamaGUI implements ActionListener, KeyListener, WindowFocusListener
         
         try {
             
-            Image[] imgRed = new Image[6];
-            Image[] imgBlue = new Image[6];
+            Image[] imgNegras = new Image[6];
+            Image[] imgBlancas = new Image[6];
             mt = new MediaTracker(mainApp);
             
             for (int i = 0; i < 6; i++) {
                 
-                imgRed[i] = createImage.getImage(this, "/images/" + strNegrasPieces[i], 5000);
-                imgBlue[i] = createImage.getImage(this,"/images/" + strBlancasPieces[i], 5000);
-                mt.addImage(imgRed[i], 0);
-                mt.addImage(imgBlue[i], 0);
+                imgNegras[i] = createImage.getImage(this, "/images/" + strNegrasPieces[i], 5000);
+                imgBlancas[i] = createImage.getImage(this,"/images/" + strBlancasPieces[i], 5000);
+                mt.addImage(imgNegras[i], 0);
+                mt.addImage(imgBlancas[i], 0);
                 
             }
             
@@ -68,7 +68,7 @@ public class DamaGUI implements ActionListener, KeyListener, WindowFocusListener
             } catch (InterruptedException e) {
             }
             
-            mainBoard.setupImages(imgRed, imgBlue);
+            mainBoard.setupImages(imgNegras, imgBlancas);
             
         } catch (NullPointerException e) {
             
@@ -122,7 +122,7 @@ public class DamaGUI implements ActionListener, KeyListener, WindowFocusListener
         if (e.getSource() == cmdSetNames) {
             
             if (txtPlayerOne.getText().equals("")) {
-                txtPlayerOne.setText("Henry Wong");
+                txtPlayerOne.setText("GuizadoGonzales");
             }
             
             if (txtPlayerTwo.getText().equals("")) {
