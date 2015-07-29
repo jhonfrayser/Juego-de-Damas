@@ -20,7 +20,7 @@ public class VentanaTablero extends  TableroDeDama implements MouseListener, Mou
     private int startingX = 0, startingY = 0, currentX = 0, currentY = 0, refreshCounter = 0;
     private boolean firstTime = true, hasWon = false, isDragging = false;
     
- 
+    private Ficha fichaobject = new Ficha();
     
     public VentanaTablero() {
         this.addMouseListener(this);
@@ -121,14 +121,40 @@ public class VentanaTablero extends  TableroDeDama implements MouseListener, Mou
         
     }
     
-    ////////////
+    ////////////  Valida los movimientos
       private void checkMove(int desRow, int desColumn) {
         
         boolean legalMove = false;
         
         if (cellMatrix.getPlayerCell(desRow,desColumn) == currentPlayer) {
             strStatusMsg = "No puedes mover";
-        } //////
+        } else //if(legalMove = fichaobject.legalMove(startRow, startColumn, desRow, desColumn,cellMatrix.getPlayerMatrix())); 
+        {
+           // legalMove = fichaobject.legalMove(startRow, startColumn, desRow, desColumn,cellMatrix.getPlayerMatrix());
+        switch(pieceBeingDragged){
+        //aca es la parte mas importante aca es donde se ve si realmente las fichas se
+        //mueven en la direccion correcta
+            case 0: legalMove = fichaobject.legalMove(startRow, startColumn, desRow, desColumn,cellMatrix.getPlayerMatrix());
+                break;
+        }
+        
+        }
+        
+        if(legalMove){
+        int newDesRow=0;
+        int newDesColumn=0;
+        
+        switch (pieceBeingDragged) {
+                
+                case 0: newDesRow = fichaobject.getDesRow();
+                newDesColumn = fichaobject.getDesColumn();
+                break;                
+            }
+         cellMatrix.setPlayerCell(newDesRow, newDesColumn, currentPlayer);
+        
+        }
+        
+        //////
             
         }
         
