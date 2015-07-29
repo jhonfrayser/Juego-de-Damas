@@ -22,7 +22,7 @@ public class JuegoDeDamas  extends JFrame {
 
             } catch (Exception e) {
             }
-        JFrame frame = new JFrame("Juego de Damas - ");
+        JFrame frame = new JFrame("Juego de Damas  ");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
        
         frame.setSize(550,650);
