@@ -31,7 +31,7 @@ public class VentanaTablero extends  TableroDeDama  {
         if (hasWon) {
             return "Felicitaciones " + strPlayerName[currentPlayer - 1] + ", tu eres el ganadaror!";
         } else if (firstTime) {
-            return "" + strPlayerName[0] + " tu eres los rojos, " + strPlayerName[1] + " tu eres los blancos. Presiona nuevo juego para empezar";
+            return "" + strPlayerName[0] + " tu eres los Negros, " + strPlayerName[1] + " tu eres los Blancos. Presiona nuevo juego para empezar";
         } else {
             return "" + strPlayerName[currentPlayer - 1] + " mueve";
         }
