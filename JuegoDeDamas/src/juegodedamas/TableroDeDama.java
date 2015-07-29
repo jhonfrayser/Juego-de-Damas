@@ -11,6 +11,7 @@ public class TableroDeDama extends Canvas {
  // Crear Objeto
      protected objPaintInstruction currentInstruction = null;
      protected Vector vecPaintInstructions = new Vector();
+     
     public void tablerodamas() {
     }
     

@@ -6,6 +6,11 @@ import javax.swing.ImageIcon;
  *
  * @author JhonFrayser
  */
+
+/*
+ * //Solo sirve para poder manejar el ingreso de las imagenes dentro del juego
+//Dado que cada pieza es una imagen
+ */
 public class objCreateAppletImage {
     private String strErrorMsg = "";
     
