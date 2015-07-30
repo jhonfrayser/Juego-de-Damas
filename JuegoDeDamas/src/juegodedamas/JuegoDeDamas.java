@@ -22,8 +22,13 @@ public class JuegoDeDamas  extends JFrame {
 
             } catch (Exception e) {
             }
-        JFrame frame = new JFrame("Juego de Damas - Jhon Frayser ");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        JFrame frame = new JFrame("Juego de Damas - JhonFrayser ");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+         DamaGUI chessWindow = new DamaGUI();
+        frame.setContentPane(chessWindow.createGUI(frame));
+        frame.addWindowFocusListener(chessWindow);
+        
        
         frame.setSize(550,650);
         frame.setResizable(false);

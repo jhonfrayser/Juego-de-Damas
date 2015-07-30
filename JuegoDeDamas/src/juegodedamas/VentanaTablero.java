@@ -151,7 +151,80 @@ public class VentanaTablero extends  TableroDeDama implements MouseListener, Mou
                 break;                
             }
          cellMatrix.setPlayerCell(newDesRow, newDesColumn, currentPlayer);
-        
+        //Si la ficha llega al final cambia a Dama
+          if (pieceBeingDragged == 0 && (newDesRow == 0 || newDesRow == 7))
+            {
+                
+                boolean canPass = false;
+                int newPiece = 2;
+                String strNewPiece = "Torre";
+                String[] strPieces = {"Torre","Caballo","Alfil","Reina"};
+                JOptionPane digBox = new JOptionPane("Elige la pieza", JOptionPane.QUESTION_MESSAGE, JOptionPane.OK_CANCEL_OPTION, null, strPieces, "Torre");
+                JDialog dig = digBox.createDialog(null, "Peon al final del camino");
+                
+                do
+                {
+                    
+                    dig.setVisible(true);
+                    
+                    try {
+                        
+                        strNewPiece = digBox.getValue().toString();
+                        
+                        for (int i = 0; i < strPieces.length; i++) {
+                            
+                            if (strNewPiece.equalsIgnoreCase(strPieces[i])) {
+                                
+                                canPass = true;
+                                newPiece = i + 1;
+                                
+                            }
+                            
+                        }
+                        
+                    } catch (NullPointerException e) {
+                        canPass = false;
+                    }
+                    
+                }
+                
+                while (canPass == false);
+                
+                cellMatrix.setPieceCell(newDesRow, newDesColumn, newPiece);
+                
+            } else {
+                cellMatrix.setPieceCell(newDesRow, newDesColumn, pieceBeingDragged);
+            }
+            
+            if (cellMatrix.checkWinner(currentPlayer)) {
+                
+                hasWon = true;
+                strStatusMsg = getPlayerMsg();
+                
+            } else {
+                
+                if (currentPlayer == 1) {
+                    currentPlayer = 2;
+                } else {
+                    currentPlayer = 1;
+                }
+                
+                strStatusMsg = getPlayerMsg();
+                
+            }
+            
+        } else {
+            
+            switch (pieceBeingDragged) {
+                
+                case 0: strStatusMsg = fichaobject.getErrorMsg();
+                break;
+                
+            }
+            
+            unsucessfullDrag(desRow, desColumn);
+            
+         
         }
         
         //////
@@ -164,7 +237,7 @@ public class VentanaTablero extends  TableroDeDama implements MouseListener, Mou
     
    
     
-    private void unsucessfullDrag() {
+    private void unsucessfullDrag(int desRow, int desColumn) {
         
         cellMatrix.setPieceCell(startRow, startColumn, pieceBeingDragged);
         cellMatrix.setPlayerCell(startRow, startColumn, currentPlayer);
@@ -186,11 +259,14 @@ public class VentanaTablero extends  TableroDeDama implements MouseListener, Mou
      drag and drop(arrastrar y soltar)
      */
     
+    @Override
     public void mouseClicked(MouseEvent e) {
     }
     
+    @Override
     public void mouseEntered(MouseEvent e) {
     }
+    @Override
      public void mouseExited(MouseEvent e) {
         mouseReleased(e);
     }
