@@ -57,7 +57,7 @@ public class DamaGUI implements ActionListener, KeyListener, WindowFocusListener
             for (int i = 0; i < 6; i++) {
                 
                 imgNegras[i] = createImage.getImage(this, "/images/" + strNegrasPieces[i], 5000);
-                imgBlancas[i] = createImage.getImage(this,"/images/" + strBlancasPieces[i], 5000);
+                imgBlancas[1] = createImage.getImage(this,"/images/" + strBlancasPieces[i], 5000);
                 mt.addImage(imgNegras[i], 0);
                 mt.addImage(imgBlancas[i], 0);
                 
